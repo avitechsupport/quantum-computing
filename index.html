@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    Quantum Computing Roadmap – GitHub Pages Landing
+    TODO: Replace placeholders marked with "TODO:" (playlist URL, channel URL, video IDs/links, brand name).
+  -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quantum Computing Roadmap – Learn in 12 Lessons | Tech Support</title>
+  <meta name="description" content="A futuristic, free 12‑lesson course covering qubits, superposition, entanglement, Qiskit hands‑on coding, and core quantum algorithms like Deutsch–Jozsa, Grover, and Shor. Includes slides, scripts." />
+  <meta name="theme-color" content="#0ea5e9" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Quantum Computing Roadmap – Learn in 12 Lessons" />
+  <meta property="og:description" content="Free 12‑lesson YouTube course + Qiskit code. https://youtube.com/playlist?list=PLO4KilCST0Ft3Y8xwF8DTWkLewMsQ3owl&si=XRGa2EZp3rP5Cr58" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://avitechsupport.github.io/quantum-computing/" />
+  <!-- <meta property="og:image" content="https://yourdomain/og-image.png" /> TODO: optional social image -->
+
+  <!-- Twitter/X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Quantum Computing Roadmap – Learn in 12 Lessons" />
+  <meta name="twitter:description" content="Futuristic landing for the course. Add YouTube links easily." />
+
+  <style>
+    :root{
+      --bg:#070a12;
+      --panel:#0b1324cc; /* glass */
+      --fg:#e8f1ff;
+      --muted:#a6b3c9;
+      --brand:#22d3ee;   /* cyan */
+      --brand-2:#a78bfa; /* purple */
+      --accent:#34d399;  /* teal/green */
+      --danger:#fb7185;  /* rose */
+      --card:rgba(15,23,42,.55);
+      --border:rgba(148,163,184,.16);
+      --shadow:0 10px 30px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.03);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font:16px/1.55 ui-sans-serif,system-ui,Segoe UI,Roboto,Inter,Arial;}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{opacity:.9}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+    /* Futuristic grid background */
+    .bg-grid:before{
+      content:"";position:fixed;inset:0;z-index:-2;
+      background:
+        radial-gradient(1200px 600px at 80% -10%, #22d3ee20, transparent 60%),
+        radial-gradient(900px 600px at -10% 20%, #a78bfa26, transparent 60%),
+        linear-gradient(180deg, #0000, #00000070 65%, #000000);
+      pointer-events:none
+    }
+    .bg-grid:after{
+      content:"";position:fixed;inset:0;z-index:-1;
+      background-image:
+        linear-gradient(#ffffff06 1px, transparent 1px),
+        linear-gradient(90deg, #ffffff06 1px, transparent 1px);
+      background-size:48px 48px;
+      mask:radial-gradient(1500px 800px at 50% -10%, #000 55%, transparent 70%);
+      pointer-events:none
+    }
+    header{
+      position:sticky;top:0;backdrop-filter:blur(10px);background:linear-gradient(180deg, #0b1324dd, #0b132400);
+      border-bottom:1px solid var(--border);z-index:50
+    }
+    .nav{display:flex;align-items:center;gap:16px;height:64px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
+    .logo{width:28px;height:28px;border-radius:50%;background:
+      conic-gradient(from 0deg, var(--brand), var(--brand-2), var(--brand));
+      box-shadow:0 0 22px #22d3ee66}
+    .nav a.btn{margin-left:auto}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      background:linear-gradient(135deg, var(--brand), var(--brand-2));
+      color:#03111a;padding:10px 14px;border-radius:12px;font-weight:700;
+      box-shadow:0 8px 25px #22d3ee40, inset 0 1px 0 #ffffff30;
+      border:0;cursor:pointer
+    }
+    .btn.alt{
+      background:transparent;color:var(--fg);border:1px solid var(--border)
+    }
+
+    .hero{padding:64px 0 34px;display:grid;grid-template-columns:1.2fr .8fr;gap:26px}
+    .hero h1{font-size:clamp(28px,4.2vw,52px);line-height:1.1;margin:.2em 0 .15em}
+    .tag{display:inline-flex;align-items:center;gap:8px;
+      font-weight:700;color:#04121a;background:linear-gradient(135deg,var(--accent),#5eead4);
+      padding:6px 12px;border-radius:999px}
+    .hero p{color:var(--muted);max-width:62ch}
+    .panel{
+      background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)
+    }
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+    .stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;text-align:center}
+    .stat .k{font-size:22px;font-weight:800}
+    .stat .l{font-size:12px;color:var(--muted)}
+
+    section{padding:46px 0}
+    h2{font-size:clamp(22px,2.6vw,32px);margin:0 0 14px}
+    .sub{color:var(--muted);margin:0 0 18px}
+
+    /* Course grid */
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+    @media (max-width:1000px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.grid{grid-template-columns:1fr}}
+    .card{
+      background:var(--card);border:1px solid var(--border);border-radius:16px;
+      padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden
+    }
+    .card:before{
+      content:"";position:absolute;inset:auto -30% -30% auto;width:160px;height:160px;border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, #22d3ee40, transparent 55%);
+      filter:blur(10px)
+    }
+    .card h3{margin:0 0 6px;font-size:18px}
+    .card .desc{color:var(--muted);font-size:14px;margin-bottom:12px;min-height:40px}
+    .pill{
+      display:inline-flex;gap:8px;align-items:center;font-size:12px;color:#04121a;
+      background:linear-gradient(135deg,#60a5fa,#a78bfa);padding:6px 10px;border-radius:999px;margin-right:8px
+    }
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap}
+
+    /* Video gallery */
+    .videos{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
+    @media (max-width:900px){.videos{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:600px){.videos{grid-template-columns:1fr}}
+    .vid{
+      position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:#0b1324
+    }
+    .thumb{
+      aspect-ratio:16/9;display:grid;place-items:center;
+      background:
+        radial-gradient(600px 300px at 20% 10%, #22d3ee22, transparent 60%),
+        radial-gradient(600px 300px at 80% 90%, #a78bfa22, transparent 60%),
+        #0b1324;
+      color:var(--muted)
+    }
+    .play{
+      position:absolute;inset:auto auto 12px 12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#04121a;border:0;border-radius:12px;padding:8px 10px;font-weight:800;cursor:pointer
+    }
+    .vid h4{margin:10px 12px 6px}
+    .vid p{margin:0 12px 16px;color:var(--muted);font-size:14px}
+
+    /* Footer */
+    footer{padding:32px 0;color:var(--muted);border-top:1px solid var(--border);margin-top:36px}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .top{position:fixed;right:18px;bottom:18px;z-index:20}
+  </style>
+</head>
+<body class="bg-grid">
+  <a href="#main" class="sr-only">Skip to content</a>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Tech Support • Quantum Roadmap</span>
+      </div>
+      <a class="btn alt" href="#outline">Course Outline</a>
+      <!-- TODO: Add your YouTube Playlist Link -->
+      <a class="btn" href="https://www.youtube.com/@avitechsupport" target="_blank" rel="noopener">Watch on YouTube</a>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <section class="hero">
+      <div>
+        <span class="tag">FREE • 12 Lessons</span>
+        <h1>Quantum Computing Roadmap</h1>
+        <p>A complete, beginner‑friendly series covering qubits, superposition, entanglement, **Qiskit** hands‑on coding, and landmark algorithms like **Deutsch–Jozsa, Grover, and Shor**. Built for students and developers.</p>
+        <div class="cta-row">
+          <!-- TODO: Add your playlist URL -->
+          <a class="btn" href="https://youtube.com/playlist?list=PLO4KilCST0Ft3Y8xwF8DTWkLewMsQ3owl&si=XRGa2EZp3rP5Cr58" target="_blank" rel="noopener">Start the Playlist</a>
+          <a class="btn alt" href="#videos">Preview Videos</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="k">12</div><div class="l">Lessons</div></div>
+          <div class="stat"><div class="k">Hands‑On</div><div class="l">Qiskit Code</div></div>
+          <div class="stat"><div class="k">Real‑World</div><div class="l">Use Cases</div></div>
+        </div>
+      </div>
+      <div class="panel" style="padding:18px;">
+        <h2 style="margin:0 0 6px;">What you’ll learn</h2>
+        <p class="sub">From fundamentals to algorithms.</p>
+        <ul style="margin:0;padding-left:18px;color:var(--muted)">
+          <li>Bits vs Qubits, Superposition, Entanglement</li>
+          <li>Quantum Gates, Circuits, Measurement</li>
+          <li>Qiskit & IBM Quantum Lab (cloud notebooks)</li>
+          <li>Deutsch–Jozsa, Grover’s Search, Shor’s Algorithm</li>
+          <li>Quantum Error Correction, Applications & Careers</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Course Outline -->
+    <section id="outline">
+      <h2>Course Outline (12 Lessons)</h2>
+      <p class="sub">Each lesson links to a video — add your URLs where indicated.</p>
+      <div class="grid">
+        <!-- Day 1 -->
+        <article class="card">
+          <span class="pill">Day 1</span>
+          <h3>What is Quantum Computing?</h3>
+          <p class="desc">Understanding the quantum leap from classical to quantum.</p>
+          <!-- TODO: Replace # with Day 1 video link -->
+          <a class="btn" href="https://youtu.be/KsUesYioo0I?si=PUoaQDf8UTQFAvh8" target="_blank" rel="noopener">Watch</a>
+          <a class="btn alt" href="#videos">Preview</a>
+        </article>
+        <!-- Day 2 -->
+        <article class="card">
+          <span class="pill">Day 2</span>
+          <h3>Qubits & Superposition</h3>
+          <p class="desc">How qubits work and what makes them special.</p>
+          <!-- TODO: Replace # with Day 2 video link -->
+          <a class="btn" href="https://youtu.be/8Qq7sZOdG84?si=eatW0NcUSn_yj0a6" target="_blank" rel="noopener">Watch</a>
+          <a class="btn alt" href="#videos">Preview</a>
+        </article>
+        <!-- Day 3 -->
+        <article class="card">
+          <span class="pill">Day 3</span>
+          <h3>Quantum Entanglement</h3>
+          <p class="desc">The most mysterious principle in quantum mechanics.</p>
+          <!-- TODO: Replace # with Day 3 video link -->
+          <a class="btn" href="#" target="_blank" rel="noopener">Watch</a>
+          <a class="btn alt" href="#videos">Preview</a>
+        </article>
+        <!-- Day 4 -->
+        <article class="card">
+          <span class="pill">Day 4</span>
+          <h3>Quantum Gates & Circuits</h3>
+          <p class="desc">How quantum logic works.</p>
+          <!-- TODO: Replace # with Day 4 video link -->
+          <a class="btn" href="#" target="_blank" rel="noopener">Watch</a>
+          <a class="btn alt" href="#videos">Preview</a>
+        </article>
+        <!-- Day 5 -->
+        <article class="card">
+          <span class="pill">Day 5</span>
+          <h3>Measurement & Probabilities</h3>
+          <p class="desc">Collapsing qubits and interpreting results.</p>
+          <!-- TODO: Replace # with Day 5 video link -->
+          <a class="btn" href="#" target="_blank" rel="noopener">Watch</a>
+          <a class="btn alt" href="#videos">Preview</a>
+        </article>
+        <!-- Day 6 -->
+        <article class="card">
+          <span class="pill">Day 6</span>
+          <h3>Intro to Qiskit & IBM Quantum Lab</h3>
+          <p class="desc">Setup and your first quantum program.</p>
+          <!-- TODO: Replace # with Day 6 video link -->
+          <a class="btn" href="#" target="_blank" rel="noopener">Watch</a>
+          <a class="btn alt" href="#videos">Preview</a>
+        </article>
+        <!-- Day 7 -->
+        <article class="card">
+          <span class="pill">Day 7</span>
+          <h3>Creating a Quantum Circuit</h3>
+          <p class="desc">Hello Qubit expanded — multi‑qubit & entanglement.</p>
+          <!-- TODO: Replace # with Day 7 video link -->
+          <a class="btn" href="#" target="_blank" rel="noopener">Watch</a>
+          <a class="btn alt" href="#videos">Preview</a>
+        </article>
+        <!-- Day 8 -->
+        <article class="card">
+          <span class="pill">Day 8</span>
+          <h3>Quantum Algorithms: DJ & Grover</h3>
+          <p class="desc">First speedups: constant vs balanced & quantum search.</p>
+          <!-- TODO: Replace # with Day 8 video link -->
+          <a class="btn" href="#" target="_blank" rel="noopener">Watch</a>
+          <a class="btn alt" href="#videos">Preview</a>
+        </article>
+        <!-- Day 9 -->
+        <article class="card">
+          <span class="pill">Day 9</span>
+          <h3>Shor’s Algorithm & Breaking RSA</h3>
+          <p class="desc">Period finding + QFT — why RSA is at risk.</p>
+          <!-- TODO: Replace # with Day 9 video link -->
+          <a class="btn" href="#" target="_blank" rel="noopener">Watch</a>
+          <a class="btn alt" href="#videos">Preview</a>
+        </article>
+        <!-- Day 10 -->
+        <article class="card">
+          <span class="pill">Day 10</span>
+          <h3>Quantum Error Correction Basics</h3>
+          <p class="desc">Protecting fragile qubits.</p>
+          <!-- TODO: Replace # with Day 10 video link -->
+          <a class="btn" href="#" target="_blank" rel="noopener">Watch</a>
+          <a class="btn alt" href="#videos">Preview</a>
+        </article>
+        <!-- Day 11 -->
+        <article class="card">
+          <span class="pill">Day 11</span>
+          <h3>Real‑World Applications</h3>
+          <p class="desc">From chemistry to finance to AI.</p>
+          <!-- TODO: Replace # with Day 11 video link -->
+          <a class="btn" href="#" target="_blank" rel="noopener">Watch</a>
+          <a class="btn alt" href="#videos">Preview</a>
+        </article>
+        <!-- Day 12 -->
+        <article class="card">
+          <span class="pill">Day 12</span>
+          <h3>The Future of Quantum</h3>
+          <p class="desc">Careers, startups, research, and what lies ahead.</p>
+          <!-- TODO: Replace # with Day 12 video link -->
+          <a class="btn" href="#" target="_blank" rel="noopener">Watch</a>
+          <a class="btn alt" href="#videos">Preview</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Video placeholders (embeds or thumbnails) -->
+    <section id="videos">
+      <h2>Featured Videos</h2>
+      <p class="sub">Replace the <code>VIDEO_ID</code> with your YouTube IDs, or swap the buttons to external links.</p>
+      <div class="videos">
+        <!-- Video 1 -->
+        <article class="vid">
+          <!-- TODO: Replace VIDEO_ID with the YouTube ID, or keep the thumb and link the button -->
+          <div class="thumb">
+            <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/3d8HiPSW4LA" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="11" stroke="#22d3ee" opacity=".6"/>
+              <path d="M9 8l8 4-8 4V8z" fill="#22d3ee"/>
+            </svg>
+          </div>
+          <h4>Day 5 – Measurement & Probabilities</h4>
+          <p>Wavefunction collapse, amplitudes, and probability histograms.</p>
+          <!-- TODO: Replace # with Day 5 YouTube URL -->
+          <a class="play" href="#" target="_blank" rel="noopener">Watch</a>
+        </article>
+
+        <!-- Video 2 -->
+        <article class="vid">
+          <div class="thumb">
+            <!-- <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="11" stroke="#a78bfa" opacity=".6"/>
+              <path d="M9 8l8 4-8 4V8z" fill="#a78bfa"/>
+            </svg>
+          </div>
+          <h4>Day 6 – Intro to Qiskit & IBM Quantum Lab</h4>
+          <p>Setup, Hello Qubit, simulator vs hardware.</p>
+          <!-- TODO: Replace # with Day 6 YouTube URL -->
+          <a class="play" href="#" target="_blank" rel="noopener">Watch</a>
+        </article>
+
+        <!-- Video 3 -->
+        <article class="vid">
+          <div class="thumb">
+            <!-- <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="11" stroke="#34d399" opacity=".6"/>
+              <path d="M9 8l8 4-8 4V8z" fill="#34d399"/>
+            </svg>
+          </div>
+          <h4>Day 9 – Shor’s Algorithm & Breaking RSA</h4>
+          <p>Period finding + QFT, Qiskit demo factoring 15.</p>
+          <!-- TODO: Replace # with Day 9 YouTube URL -->
+          <a class="play" href="#" target="_blank" rel="noopener">Watch</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="panel" style="padding:24px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+      <div>
+        <h2 style="margin:.1em 0 .2em">Ready to learn quantum computing?</h2>
+        <p class="sub" style="margin:0">Follow the playlist and build every circuit step by step.</p>
+      </div>
+      <!-- TODO: Add your channel/playlist link -->
+      <a class="btn" href="https://youtube.com/@YourChannelLink" target="_blank" rel="noopener">Open Playlist</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="links" style="margin-bottom:8px">
+        <!-- TODO: Replace social links -->
+        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://x.com/yourhandle" target="_blank" rel="noopener">X (Twitter)</a>
+        <a href="https://youtube.com/@YourChannelLink" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://github.com/yourusername/quantum-computing-roadmap-12-lessons" target="_blank" rel="noopener">Repository</a>
+      </div>
+      <small>© <span id="y"></span> Tech Support • Quantum Computing Roadmap. Built with ♥ for GitHub Pages.</small>
+    </div>
+    <button class="btn top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+  </footer>
+
+  <script>
+    // Set year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Optional: Structured data for SEO (Course + ItemList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Quantum Computing Roadmap – Learn in 12 Lessons",
+    "description": "A free 12-lesson YouTube course covering quantum fundamentals, Qiskit coding, and algorithms like Deutsch–Jozsa, Grover, and Shor.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Tech Support",
+      "sameAs": "https://youtube.com/@YourChannelLink"
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "online",
+      "name": "Quantum Computing Roadmap Series",
+      "location": {"@type":"VirtualLocation","url":"https://youtube.com/@YourChannelLink"},
+      "workload": "12 lessons"
+    },
+    "hasPart": {
+      "@type": "ItemList",
+      "itemListOrder": "http://schema.org/ItemListOrderAscending",
+      "numberOfItems": 12,
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"What is Quantum Computing?"},
+        {"@type":"ListItem","position":2,"name":"Qubits & Superposition"},
+        {"@type":"ListItem","position":3,"name":"Quantum Entanglement"},
+        {"@type":"ListItem","position":4,"name":"Quantum Gates & Circuits"},
+        {"@type":"ListItem","position":5,"name":"Quantum Measurement & Probabilities"},
+        {"@type":"ListItem","position":6,"name":"Intro to Qiskit & IBM Quantum Lab"},
+        {"@type":"ListItem","position":7,"name":"Creating a Quantum Circuit – Hello Qubit Expanded"},
+        {"@type":"ListItem","position":8,"name":"Quantum Algorithms: Deutsch–Jozsa & Grover’s Intro"},
+        {"@type":"ListItem","position":9,"name":"Shor’s Algorithm & Breaking RSA"},
+        {"@type":"ListItem","position":10,"name":"Quantum Error Correction Basics"},
+        {"@type":"ListItem","position":11,"name":"Real-World Applications of Quantum Computing"},
+        {"@type":"ListItem","position":12,"name":"The Future of Quantum Computing"}
+      ]
+    }
+  }
+  </script>
+</body>
+</html>
